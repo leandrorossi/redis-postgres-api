@@ -7,33 +7,58 @@ namespace RedisPostgres_Api.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class ProductController(IProductRepository repository) : ControllerBase
+    public class ProductController(IProductRepository repository, ICacheRepository cacheRepository) : ControllerBase
     {
         private readonly IProductRepository _repository = repository;
+        private readonly ICacheRepository _cacheRepository = cacheRepository;   
 
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetProduct(int id)
         {
-            var product = await _repository.GetProductAsync(id);
+            var product = await _cacheRepository.GetProductAsync(id);
 
-            if (product == null)
+            if (product != null)
             {
-                return NotFound($"Not found product with id = {id}");
+                return Ok(product);
             }
+            else
+            {
+                product = await _repository.GetProductAsync(id);                
 
-            return Ok(product);
+                if (product == null)
+                {
+                    return NotFound($"Not found product with id = {id}");
+                }
+
+                await _cacheRepository.UpdateProductAsync(product);
+
+                return Ok(product);
+            }   
         }
 
         [HttpGet]
         public async Task<IActionResult> GetProducts()
         {
-            return Ok(await _repository.GetProductsAsync());
+            var products = await _cacheRepository.GetProductsAsync();
+
+            if (products != null)
+            {
+                return Ok(products);
+            }
+            else
+            {
+                products = await _repository.GetProductsAsync();
+                await _cacheRepository.UpdateProductsAsync(products);
+
+                return Ok(products);
+            }            
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateProduct([FromBody] Product product)
         {
             await _repository.CreateProductAsync(product);
+            await _cacheRepository.UpdateProductAsync(product);
 
             return CreatedAtAction(nameof(GetProduct), new { id = product.Id }, product);
         }
@@ -41,12 +66,14 @@ namespace RedisPostgres_Api.Controllers
         [HttpPut("{id:int}")]
         public async Task<IActionResult> UpdateProduct(int id, [FromBody] Product product)
         {
-            var result = await _repository.UpdateProductAsync(id, product);
+            var result = await _repository.UpdateProductAsync(id, product);            
 
             if (!result)
             {
                 return NotFound($"Not found product with id = {id}");
             }
+
+            await _cacheRepository.UpdateProductAsync(product);
 
             return Ok();
         }
@@ -60,6 +87,8 @@ namespace RedisPostgres_Api.Controllers
             {
                 return NotFound($"Not found product with id = {id}");
             }
+
+            await _cacheRepository.DeleteProductAsync(id);
 
             return Ok();
         }

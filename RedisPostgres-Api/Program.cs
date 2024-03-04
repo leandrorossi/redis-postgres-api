@@ -6,6 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ICacheRepository, CacheRepository>();
+
+builder.Services.AddStackExchangeRedisCache(options =>
+    options.Configuration = builder.Configuration["CacheSettings:ConnectionString"]);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

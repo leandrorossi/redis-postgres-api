@@ -16,6 +16,10 @@ services:
     image: dpage/pgadmin4:8.0
     container_name: pdadmin
 
+  redis:
+    image: redis:7.2.4-alpine3.19
+    container_name: redis
+
 volumes:
   postgres_data:
   pgadmin_data:

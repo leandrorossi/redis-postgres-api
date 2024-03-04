@@ -12,7 +12,7 @@ namespace RedisPostgres_Api.Repository
         {
             get => new NpgsqlConnection(_configuration["DatabaseSettings:ConnectionString"]);
         }
-
+      
         public async Task<Product> GetProductAsync(int id)
         {
             await using var connection = _connection;
