@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34322.80
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedisPostgres-Api", "RedisPostgres-Api\RedisPostgres-Api.csproj", "{FEE786E3-7041-4FD1-8BDD-32AE8708D348}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{29974F6C-32AD-4459-8AEF-327632DBA6DD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FEE786E3-7041-4FD1-8BDD-32AE8708D348}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEE786E3-7041-4FD1-8BDD-32AE8708D348}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEE786E3-7041-4FD1-8BDD-32AE8708D348}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEE786E3-7041-4FD1-8BDD-32AE8708D348}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29974F6C-32AD-4459-8AEF-327632DBA6DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29974F6C-32AD-4459-8AEF-327632DBA6DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29974F6C-32AD-4459-8AEF-327632DBA6DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29974F6C-32AD-4459-8AEF-327632DBA6DD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {24317CD7-4FBB-483B-B385-A498EEBBD214}
+	EndGlobalSection
+EndGlobal

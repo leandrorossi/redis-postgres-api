@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  application:
+    image: application
+    container_name: application
+    build:
+      context: .
+      dockerfile: RedisPostgres-Api/Dockerfile
+
+  postgres:
+    image: postgres:16.2-alpine3.19
+    container_name: postgres
+
+  pgadmin:
+    image: dpage/pgadmin4:8.0
+    container_name: pdadmin
+
+volumes:
+  postgres_data:
+  pgadmin_data:
