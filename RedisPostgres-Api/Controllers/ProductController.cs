@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RedisPostgres_Api.Models;
 using RedisPostgres_Api.Repository;
@@ -7,12 +8,13 @@ namespace RedisPostgres_Api.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
+    [Authorize]
     public class ProductController(IProductRepository repository, ICacheRepository cacheRepository) : ControllerBase
     {
         private readonly IProductRepository _repository = repository;
         private readonly ICacheRepository _cacheRepository = cacheRepository;   
 
-        [HttpGet("{id:int}")]
+        [HttpGet("{id:int}")]       
         public async Task<IActionResult> GetProduct(int id)
         {
             var product = await _cacheRepository.GetProductAsync(id);
