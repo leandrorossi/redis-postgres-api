@@ -13,7 +13,7 @@ git clone https://github.com/leandrorossi/redis-postgres-api.git
 ```
 
 ### Executando via dotnet CLI
-Você pode rodar o projeto via dotnet CLI com os seguintes comandos:
+Você pode rodar o projeto via dotnet CLI com o seguinte comando:
 ```
 dotnet run
 ```
@@ -31,7 +31,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - Redis
 - Dapper
 - Docker
-- Bcrypyt
+- Bcrypt
 
 ## Autor
  <img style="border-radius: 50%;" src="https://avatars2.githubusercontent.com/u/65093597?s=60&v=4" width="100px;" alt=""/>
